@@ -5,7 +5,6 @@ import {DeployOurToken} from "../script/DeployOurToken.s.sol";
 
 import {OurToken} from "../src/Token.sol";
 
-
 import {Test, console} from "forge-std/Test.sol";
 import {StdCheats} from "forge-std/StdCheats.sol";
 
@@ -33,7 +32,4 @@ contract OurTokenTest is StdCheats, Test {
         vm.expectRevert();
         MintableToken(address(ourToken)).mint(address(this), 1);
     }
-
-  
-
 }
