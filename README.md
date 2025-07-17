@@ -1,66 +1,82 @@
-## Foundry
+# 🚀 ERC-20 Token with Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project demonstrates how to build and test an **ERC-20 Token** using the [Foundry](https://book.getfoundry.sh/) smart contract development framework. It also includes deployment scripts and test cases.
 
-Foundry consists of:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+yaml
+Copy
+Edit
 
-## Documentation
+---
 
-https://book.getfoundry.sh/
+## 🔧 Setup Instructions
 
-## Usage
+### 🛠 Prerequisites
 
-### Build
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)
+- Git
+- Node.js (optional, for frontend integration)
 
-```shell
-$ forge build
-```
+### 📥 Install Dependencies
 
-### Test
+```bash
+git clone https://github.com/your-username/ERC20-Foundry.git
+cd ERC20-Foundry
+forge install
+✍️ Writing Your Token
+You can modify Token.sol to create your own ERC-20 token:
 
-```shell
-$ forge test
-```
+solidity
+Copy
+Edit
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
 
-### Format
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-```shell
-$ forge fmt
-```
+contract OurToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("OurToken", "OTK") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+🚀 Deploying the Contract
+Deploy to Sepolia (or your desired network):
+bash
+Copy
+Edit
+forge script script/DeployOurToken.s.sol:DeployOurToken --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
+Add .env for private keys and RPC:
 
-### Gas Snapshots
+bash
+Copy
+Edit
+PRIVATE_KEY=your_private_key
+SEPOLIA_RPC_URL=https://rpc.sepolia.org
+ETHERSCAN_API_KEY=your_etherscan_key
+🧪 Running Tests
+bash
+Copy
+Edit
+forge test -vv
+✅ GitHub Actions (CI)
+CI runs on every push to main using .github/workflows/test.yml. It automatically runs your Forge tests.
 
-```shell
-$ forge snapshot
-```
+📌 License
+This project is licensed under the MIT License.
 
-### Anvil
+🤝 Author
+Built by Atharva Joshi 🚀
+Feel free to reach out if you have any questions or want to collaborate!
 
-```shell
-$ anvil
-```
+yaml
+Copy
+Edit
 
-### Deploy
+---
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+You can copy this `README.md` file directly into your repo, commit, and push:
 
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+```bash
+git add README.md
+git commit -m "Add complete README for ERC-20 Token project"
+git push origin main
